@@ -132,7 +132,7 @@ header{
 .hero{
     width: 100%;
     height: 100vh;
-    background: url('/images/hero.jpg') center no-repeat;
+    background: url('hero.jpg') center no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -295,7 +295,7 @@ header{
 /*Tasteful recipes*/
 .tasteful-recipes{
     background-size: cover;
-    background: url('/images/tasteful-recipes.jpg') center no-repeat;
+    background: url('tasteful-recipes.jpg') center no-repeat;
 }
 .between{
     min-height: 65vh;
@@ -314,7 +314,7 @@ header{
 }
 /*The perfect blend*/
 .perfect-blend{
-    background: url('/images/perfect-blend.jpg') center no-repeat;
+    background: url('perfect-blend.jpg') center no-repeat;
     background-size: cover;
 }
 /*Footer*/
