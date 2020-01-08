@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>INNOVA'20 Techfest-DTU--CA-Portal
+    </title>
+    <!--Font awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Scroll reveal CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://unpkg.com/scrollreveal"></script>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Cabin|Herr+Von+Muellerhoff|Source+Sans+Pro:400,900&display=swap');
+/*Global styles*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-font: 'Source Sans Pro', sans-serif;
+    --secondary-font: 'Herr Von Muellerhoff', cursive;
+    --body-font: 'Cabin', sans-serif;
+    --main-font-color-dark: #252525;
+    --secondary-font-color: #c59d5f;
+    --body-font-color: #515151;
+}
+/*--------------------*/
+html{
+    font-family: var(--body-font);
+    font-size: 10px;
+    color: var(--body-font-color);
+    scroll-behavior: smooth;
+}
+body{
+    overflow-x: hidden;
+}
+section{
+    padding: 3.9rem 0;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+}
+a{
+    text-decoration: none;
+}
+p{
+    font-size: 1.6rem;
+}
+.container{
+    width: 100%;
+    max-width: 122.5rem;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+}
+header{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,.5), transparent);
+}
+.nav{
+    height: 7.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-toggle{
+    color: #fff;
+    font-size: 2.2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2.5rem;
+    cursor: pointer;
+    z-index: 1500;
+}
+.fa-times{
+    display: none;
+}
+.nav-list{
+    list-style: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: var(--main-font-color-dark);
+    padding: 4.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1250;
+    transform: translateX(-100%);
+    transition: transform .5s;
+}
+.nav::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.8);
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity .5s;
+}
+.open .fa-times{
+    display: block;
+}
+.open .fa-bars{
+    display: none;
+}
+.open .nav-list{
+    transform: translateX(0);
+}
+.open .nav::before{
+    opacity: 1;
+    transform: scale(1);
+}
+.nav-item{
+    border-bottom: 2px solid rgba(255,255,255,.3);
+}
+.nav-link{
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-right: 2px;
+    transition: color .5s;
+}
+.nav-link:hover{
+    color: var(--secondary-font-color);
+}
+.hero{
+    width: 100%;
+    height: 100vh;
+    background: url('https://innova2020.000webhostapp.com//assets/img/logo.png') center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.sub-headline{
+    font-size: 8.5rem;
+    font-family: var(--secondary-font);
+    color: var(--secondary-font-color);
+    font-weight: 100;
+    line-height: .4;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp .5s forwards;
+    animation-delay: .5s;
+}
+.first-letter{
+    text-transform: uppercase;
+    font-size: 10.3rem;
+}
+.headline{
+    color: #000;
+    font-size: 3.7rem;
+    font-family: var(--main-font);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: .5rem;
+    margin-right: -.5rem;
+    animation: scale .5s forwards;
+}
+.separator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.line{
+    max-width: 8.4rem;
+    height: .25rem;
+    background-color: #fff;
+    width: 100%;
+    position: relative;
+    opacity: 0;
+    animation: grow 2s forwards;
+    animation-delay: .9s;
+}
+.line-right::before,
+.line-left::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: .6rem solid transparent;
+    opacity: 0;
+    animation: grow .5s forwards;
+    animation-delay: 1.2s;
+}
+.line-right::before{
+    border-right-color: #fff;
+    right: 0;
+}
+.line-left::before{
+    border-left-color: #fff;
+    left: 0;
+}
+.asterisk{
+    font-size: 1.2rem;
+    color: var(--secondary-font-color);
+    margin: 0 1.6rem;
+    opacity: 0;
+    animation: spin .5s forwards;
+    animation-delay: .7s;
+}
+.single-animation{
+    opacity: 0;
+    animation: fadeDown .5s forwards;
+    animation-delay: 1.5s;
+}
+.headline-description h1{
+    color: red;
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    letter-spacing: 3px;
+    margin-right: -3px;
+}
+.btn{
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: -2px;
+}
+.cta-btn{
+    font-size: 1.1rem;
+    background-color: #fff;
+    padding: .9rem 1.8rem;
+    color: var(--body-font-color);
+    border-radius: .4rem;
+    transition: background-color .5s;
+}
+.cta-btn:hover,
+.cta-btn:focus{
+    color: #fff;
+    background-color: var(--secondary-font-color);
+}
+.global-headline{
+    text-align: center;
+    margin-top: 3.9rem;
+}
+.discover-our-story .global-headline{
+    margin-top: 6.9rem;
+}
+.global-headline .asterisk{
+    color: var(--body-font-color);
+    margin: 2.4rem 0;
+}
+.headline-dark{
+    color: var(--main-font-color-dark);
+    letter-spacing: .7rem;
+    margin-right: -.7rem;
+}
+.global-headline .sub-headline{
+    letter-spacing: -1px;
+    line-height: .42;
+}
+.restaurant-info{
+    text-align: center;
+}
+.restaurant-description{
+    margin-bottom: 3rem;
+}
+.restaurant-description p{
+    line-height: 1.6;
+    margin-bottom: 2.4rem;
+}
+.body-btn{
+    font-size: 1.5rem;
+    color: var(--secondary-font-color);
+    position: relative;
+    transition: color .5s;
+}
+.body-btn::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-font-color);
+    transition: background-color .5s;
+}
+.body-btn:hover,
+.body-btn:focus{
+    color: var(--main-font-color-dark);
+}
+.body-btn:hover::before,
+.body-btn:focus::before{
+    background-color: var(--main-font-color-dark);
+}
+/*Tasteful recipes*/
+.tasteful-recipes{
+    background-size: cover;
+    background: url('tasteful-recipes.jpg') center no-repeat;
+}
+.between{
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+}
+/*Discover our menu*/
+.image-group{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+}
+.discover-our-menu .restaurant-description{
+    padding-top: 3rem;
+    margin-bottom: 0;
+}
+/*The perfect blend*/
+.perfect-blend{
+    background: url('perfect-blend.jpg') center no-repeat;
+    background-size: cover;
+}
+#incentives{
+    margin:40px;
+    padding: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid black;
+    justify-content: center;
+}
+.heading-incentives{
+    margin: 10px;
+    box-sizing: border-box;
+    padding-bottom: 40px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 100px;
+    color: var(--secondary-font-color);
+    font-family: var(--body-font);
+}
+.team-section{
+  background: #f1f1f1;
+  text-align: center;
+}
+.inner-width{
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px;
+  color: #333;
+  overflow: hidden;
+}
+.team-section h1{
+  font-size: 20px;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 4px solid;
+  padding-bottom: 10px;
+}
+.pe{
+  float: left;
+  width: calc(100% / 3);
+  overflow: hidden;
+  padding: 40px 0;
+  transition: 0.4s;
+}
+.pe:hover{
+  background: #ddd;
+}
+.pe img{
+  width: 120px;
+  height: 120px;
+}
+.p-name{
+  margin: 16px 0;
+  text-transform: uppercase;
+}
+.p-des{
+  font-style: italic;
+  color: #3498db;
+}
+.p-sm{
+  margin-top: 12px;
+}
+.p-sm a{
+  margin: 0 4px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  transition: 0.4s;
+}
+.p-sm a:hover{
+  transform: scale(1.3);
+}
+.p-sm a i{
+  color: #333;
+  line-height: 30px;
+}
+@media screen and (max-width:600px) {
+  .pe{
+    width: 100%;
+  }
+}
+/*Footer*/
+footer{
+    padding: 7.9rem 0;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+.back-to-top{
+    width: 7rem;
+    height: 7rem;
+    background-color: #121212;
+    position: absolute;
+    top: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+.back-to-top i{
+    display: block;
+    color: #fff;
+    font-size: 2rem;
+    padding: 2rem;
+    animation: up 2s infinite;
+}
+.footer-content h4{
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 3rem;
+}
+.footer-content .asterisk{
+    margin: 2.4rem 0;
+}
+.footer-content-about{
+    margin-bottom: 5.4rem;
+}
+.footer-content-about p{
+    line-height: 2;
+}
+.social-icons{
+    list-style: none;
+    margin-bottom: 5.4rem;
+    display: flex;
+    justify-content: center;
+}
+.social-icons i{
+    font-size: 3rem;
+    color: #fff;
+    padding: .8rem 2rem;
+    opacity: .5;
+    transition: color .5s;
+}
+.social-icons i:hover,
+.social-icons i:focus{
+    color: var(--secondary-font-color);
+}
+/*Media queries*/
+@media screen and (min-width: 900px){
+    section{
+        padding: 7.9rem;
+    }
+    .menu-toggle{
+        display: none;
+    }
+    .nav{
+        justify-content: space-between;
+    }
+    .nav-list{
+        position: initial;
+        width: initial;
+        height: initial;
+        background-color: transparent;
+        padding: 0;
+        justify-content: initial;
+        flex-direction: row;
+        transform: initial;
+        transition: initial;
+    }
+    .nav-item{
+        margin: 0 2.4rem;
+        border: none;
+    }
+    .nav-item:last-child{
+        margin-right: 0;
+    }
+    .nav-link{
+        font-size: 1.3rem;
+    }
+    .active{
+        position: relative;
+    }
+    .active::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        left: 0;
+        bottom: -3px;
+    }
+    .sub-headline{
+        font-size: 10rem;
+    }
+    .first-letter{
+        font-size: 12.2rem;
+    }
+    .headline{
+        font-size: 4.7rem;
+        letter-spacing: .8rem;
+    }
+    .line{
+        max-width: 11.4rem;
+    }
+    .restaurant-info{
+        display: flex;
+        align-items: center;
+    }
+    .restaurant-info > div{
+        flex: 1;
+    }
+    .padding-right{
+        padding-right: 7rem;
+    }
+    .footer-content{
+        max-width: 77.5rem;
+        margin: auto;
+    }
+    .footer-content-about{
+        max-width: 51.3rem;
+        margin: 0 auto 5.4rem;
+    }
+    .footer-content-divider{
+        display: flex;
+        justify-content: space-between;
+    }
+    .social-media,
+    .newsletter-form{
+        width: 100%;
+        max-width: 27.3rem;
+        margin: 0 1rem;
+    }
+    .social-icons i{
+        opacity: 1;
+    }
+    .newsletter-btn{
+        margin-left: 7.5rem;
+    }
+
+}
+/*Animations*/
+@keyframes fadeUp{
+    0%{
+        transform: translateY(4rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes scale{
+    0%{
+        transform: scale(2);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes grow{
+    0%{
+        width: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+    }
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        opacity: 1;
+        transform: rotate(-360);
+    }
+}
+@keyframes fadeDown{
+    0%{
+        transform: translateY(-1rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes up{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+    <section class="hero" id="hero">
+        <div class="container">
+            <h2 class="sub-headline">
+                <span class="first-letter">I</span>nnova'2020
+            </h2>
+            <h1 class="headline">Techfest DTU</h1>
+            <div class="headline-description">
+                <div class="separator">
+                    <div class="line line-left"></div>
+                    <div class="asterisk"><i class="fa fa-asterisk"></i></div>
+                    <div class="line line-right"></div>
+                </div>
+                <div class="single-animation">
+                    <h1>Campus Ambassador</h1>
+                    <a href="#" class="btn cta-btn">Registration</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Hero ends-->
+    <section class="discover-our-story">
+        <div class="container">
+            <div class="restaurant-info">
+                <div class="restaurant-description padding-right animate-left">
+                    <div class="global-headline">
+                        <h2 class="sub-headline">
+                            <span class="first-letter">A</span>bout Us
+                        </h2>
+                        <h1 class="headline headline-dark">Our Techfest</h1>
+                        <div class="asterisk"><i class="fa fa-asterisk"></i></div>
+
+                    </div>
+                    <p><strong>INNOVA, the annual techno-management fest of Delhi Technological University (Formerly Delhi College of Engineering)</strong> was founded in 1994, under the Department of Mechanical and Production Engineering, Department of Civil and Environmental Engineering as a celebration of talent and creativity. The fest over the past 25 years has been a symposium of young minds from numerous colleges across the nation to participate in innovative events and inculcate new technicalities.</p>
+                    <a href="#" class="btn body-btn">Campus Ambassador</a>
+                </div>
+                <div class="restaurant-info-img animate-right">
+                    <img src="Campus Ambassador-1.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <h2 class="sub-headline">
+        <span class="first-letter">I</span>ncentives
+    </h2>
+<section id="incentives">
+    <div class="container">
+  <div class="row">
+      <br>
+      <br>
+    <div class="col-sm">
+      <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Certificate from Team INNOVA to ameliorate</h1>
+    </div>
+    <br>
+    <br>
+    <div class="col-sm">
+        <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Accomodation to top CAs</h1>
+    </div>
+    <br>
+    <br>
+    <div class="col-sm">
+      <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Goodies for Top 10 CAs</h1>
+    </div>
+    <br>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm">
+      <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Letter of Recommedation for Top 15CAs</h1>
+    </div>
+    <div class="col-sm">
+        <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Free tickets of INNOVA Events</h1>
+    </div>
+    <div class="col-sm">
+      <h1><div class="asterisk"><i class="fa fa-asterisk"></i></div>* Get Internship Opportunities</h1>
+    </div>
+  </div>
+</div>
+</section>
+<section class="discover-our-story">
+        <div class="container">
+            <div class="restaurant-info">
+                <div class="restaurant-description padding-right animate-left">
+                    <div class="global-headline">
+                        <h2 class="sub-headline">
+                            <span class="first-letter">R</span>esponsibilities
+                        </h2>
+                        <br>
+                        <h1 class="headline headline-dark">Our Techfest</h1>
+                        <div class="asterisk"><i class="fa fa-asterisk"></i></div>
+
+                    </div>
+                    <p><strong>PERKS OF BEING OUR FACE IN YOUR CAMPUS</strong></p>
+                    <p>Becoming an INNOVA CA is an opportunity to improve your interpersonal and management skills. It also gives you a chance to interact with people coming from diverse backgrounds all over the country. This also improves your leadership skills as you are representing your college at a higher level.</p>
+                    <a href="#" class="btn body-btn"><div class="asterisk"><i class="fa fa-asterisk"></i></div>**Publicize</a>
+                    <br>
+                    <a href="#" class="btn body-btn"><div class="asterisk"><i class="fa fa-asterisk"></i></div>**Promote</a>
+                    <br>
+                    <a href="#" class="btn body-btn"><div class="asterisk"><i class="fa fa-asterisk"></i></div>**Organize</a>
+                    <br>
+                    <a href="#" class="btn body-btn"><div class="asterisk"><i class="fa fa-asterisk"></i></div>**Represent</a>
+                </div>
+                <div class="restaurant-info-img animate-right">
+                <img src="https://innova2020.000webhostapp.com//assets/img/hologram.png" alt="">
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        
+  <div class="team-section">
+    <div class="inner-width">
+      <h1>Meet Our Team</h1>
+      <div class="pers">
+
+
+        <div class="pe">
+          <img src="" alt="">
+          <div class="p-name"><h1>Jatin</h1></div>
+          <div class="p-des"><h1>Designer</h1></div>
+          <div class="p-sm">
+              <br>
+            <h1><a href="#"><i class="fa fa-facebook-f"></i></a></h1>
+            <br>
+            <h1><a href="#"><i class="fa fa-instagram"></i></a></h1>
+            <br>
+            <h1>+919045486819</h1>
+          </div>
+        </div>
+        <div class="pe">
+          <img src="" alt="">
+          <div class="p-name"><h1>Lavesh</h1></div>
+          <div class="p-des"><h1>Designer</h1>
+          </div>
+          <div class="p-sm">
+              <br>
+            <h1><a href="#"><i class="fa fa-facebook-f"></i></a></h1>
+            <br>
+            <h1><a href="#"><i class="fa fa-instagram"></i></a></h1>
+            <br>
+            <h1>+919582346405</h1>
+          </div>
+        </div>
+
+        <div class="pe">
+          <img src="" alt="">
+          <div class="p-name"><h1>Rishabh</h1></div>
+          <div class="p-des"><h1>Web-Developer</h1></div>
+          <div class="p-sm">
+              <br>
+            <h1><a href="#"><i class="fa fa-facebook-f"></i></a></h1>
+            <br>
+            <h1><a href="#"><i class="fa fa-instagram"></i></a></h1>
+            <br>
+            <h1>+918368580827</h1>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+    </section>
+    <footer>
+        <div class="container">
+            <div class="back-to-top">
+                <a href="#hero"><i class="fa fa-chevron-up"></i></a>
+            </div>
+            <div class="footer-content">
+                <div class="footer-content-about animate-top">
+                    <h4>About INNOVA</h4>
+                    <div class="asterisk"><i class="fa fa-asterisk"></i></div>
+                    <p><strong>INNOVA the largest Techno- management fest of North India is back, </strong>this time hosting a plethora of amazing events like hackathons , exhibitions , lectures, workshops and gaming centers at the Campus of DTU.</p>
+                </div>
+                <div class="footer-content-divider animate-bottom">
+                    <div class="social-media">
+                        <h1>Follow Innova</h1>
+                        <ul class="social-icons">
+                            <li><a href="https://www.facebook.com/innovadtu/"><i class="fa fa-facebook-square"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/innova-dtu/"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.instagram.com/innovadtu/"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="main.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+//scroll reveal
+window.sr = ScrollReveal();
+
+sr.reveal('.animate-left',{
+    origin: 'left',
+    duration: 1000,
+    distance: '25rem',
+    delay: 300
+});
+sr.reveal('.animate-right',{
+    origin: 'right',
+    duration: 1000,
+    distance: '25rem',
+    delay: 600
+});
+sr.reveal('.animate-top',{
+    origin: 'top',
+    duration: 1000,
+    distance: '25rem',
+    delay: 600
+});
+sr.reveal('.animate-bottom',{
+    origin: 'bottom',
+    duration: 1000,
+    distance: '25rem',
+    delay: 600
+});
+</script>
+</body>
+</html>
