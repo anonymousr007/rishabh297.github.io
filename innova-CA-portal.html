@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Innova'2020-CA-Portal</title>
+    <!--Font awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+@import url('https://fonts.googleapis.com/css?family=quicksand:300');
+body{
+    margin: 0;
+    padding: 0;
+    background: url('2927262.jpg');
+    background-size: cover;
+    font-family: 'Quicksand' sans-serif;
+}  
+.neon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0 20px;
+    font-size: 6em;
+    color: #fff;
+    text-shadow: 0 0 20px #ff005b;
+}
+.neon:after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    z-index: -1;
+    color: #ff005b;
+    filter: blur(15px);
+}
+.neon:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #fe3a80;
+    z-index: -2;
+    opacity: .5;
+    filter: blur(40px);
+
+}
+.toggle{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    z-index: 1;
+}
+.toggle:before{
+    content: '+';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 50px;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    background: red;
+    transition: 0.5s;
+}
+.toggle.active:before{
+    transform: rotate(405deg);
+    background: #ffeb3b;
+    color: black;
+}    
+.overlay{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.95);
+    transition: transform 0.5s;
+}    
+.overlay.active{
+    transform: scale(100,100);
+}
+.menu{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 1;
+    visibility: hidden;
+}
+.menu.active{
+    visibility: visible;
+    transition-delay: 0.5s;
+}
+.menu ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+}
+.menu ul li{
+    list-style: none;
+}
+.menu ul li a{
+    position: relative;
+    font-size: 48px;
+    text-decoration: none;
+    color:#fff;
+    margin: 20px 0;
+    display: block;
+    font-weight: bold;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+} 
+.menu ul li a:before{
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: -10px;
+    width: 100%;
+    height: 20px;
+    background: #ffeb3b;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+.menu ul li a:hover:before{
+    transform:scaleX(1);
+}
+#about{
+    padding-top: 98px;
+    padding-bottom: 101px;
+}
+    </style>
+</head>
+<body>
+    <!--Navigation-->
+    <header>
+         <h1 class="neon" data-text="Innova'20 Techfest DTU">Innova'2020 Techfest DTU</h1>
+        <div class="toggle"></div>
+        <div class="overlay"></div>
+        <div class="menu">
+            <ul>
+                <li><a href="/about-us.html">About Us</a></li>
+                <li><a href="/why-become-a-CA.html">Why become a CA</a></li>
+                <li><a href="/incentives.html">Incentives</a></li>
+                <li><a href="/responsibilities.html">Responsibilities</a></li>
+                <li><a href="/contact-us.html">Contact Us</a></li>
+                <li><a href="/social-media.html">Social media</a></li>
+            </ul>
+        </div>
+    </header>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.toggle').click(function(){
+            $('.toggle').toggleClass('active')
+            $('.overlay').toggleClass('active')
+            $('.menu').toggleClass('active')
+        })
+    })
+    </script>
+</body>
+</html>
